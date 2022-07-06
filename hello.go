@@ -116,4 +116,22 @@ func main() {
 	fmt.Printf("Val: %v Type: %T Len: %v Capacity: %v \n", slice, slice, len(slice), cap(slice))
 
 	//copies of slices all point to the master slice. This is the same as the pointer to the master slice.
+
+	//maps
+
+	map1 := map[string]int{"a": 1, "b": 2, "c": 3}
+
+	map1["d"] = 4
+	map1["e"] = 5
+
+	delete(map1, "b")
+
+	//return order of maps is not guaranteed.
+
+	fmt.Printf("Val: %v Type: %T\n", map1, map1)
+
+	k, ok := map1["b"]//ok is true if the key is in map.
+
+	fmt.Printf("Val: %v Type: %T\n", k, k)
+	fmt.Printf("Val: %v Type: %T\n", ok, ok)
 }
