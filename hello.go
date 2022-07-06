@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"math"
+	"strconv"
 )
 
 //outside of main function, variables must be properly declared
@@ -51,11 +51,11 @@ func main() {
 	s := "Hello There"
 	fmt.Println(s)
 
-	var d = strconv.Itoa(i)	//convert int to string
+	var d = strconv.Itoa(i) //convert int to string
 
 	fmt.Printf("Val: %v Type: %T\n", d, d)
 
-	sb := []byte(s)	//convert string to byte slice
+	sb := []byte(s) //convert string to byte slice
 
 	fmt.Printf("Val: %v Type: %T\n", sb, sb)
 	//prints them as ASCII value array.
@@ -75,5 +75,38 @@ func main() {
 
 	fmt.Printf("Val: %v Type: %T\n", actualPi, actualPi)
 
+	//arrays
 
+	var arr [2]int
+
+	arr[0] = 42
+	arr[1] = 43
+
+	fmt.Printf("Val: %v Type: %T\n", arr, arr)
+
+	arr2 := [3]float32{1.1, 2.2, 3.3}
+
+	fmt.Printf("Val: %v Type: %T\n", arr2, arr2)
+
+	arr3 := [...]int{1, 2, 3} //dynamic array to fit the given data only
+
+	arr3[0] = 42
+
+	fmt.Printf("Val: %v Type: %T\n", arr3, arr3)
+
+	arrCopy := arr3 //copy of arr3
+
+	arrCopy[0] = 43
+
+	fmt.Printf("Val: %v Type: %T\n", arr3, arr3)
+	fmt.Printf("Val: %v Type: %T\n", arrCopy, arrCopy)
+
+	//pointers
+
+	arrPointer := &arr3
+
+	arrPointer[0] = 44
+
+	fmt.Printf("Val: %v Type: %T\n", arr3, arr3)
+	fmt.Printf("Val: %v Type: %T\n", arrPointer, arrPointer)
 }
