@@ -109,4 +109,11 @@ func main() {
 
 	fmt.Printf("Val: %v Type: %T\n", arr3, arr3)
 	fmt.Printf("Val: %v Type: %T\n", arrPointer, arrPointer)
+
+	//slices
+	slice := []int{1, 2, 3, 4, 5}
+
+	fmt.Printf("Val: %v Type: %T Len: %v Capacity: %v \n", slice, slice, len(slice), cap(slice))
+
+	//copies of slices all point to the master slice. This is the same as the pointer to the master slice.
 }
