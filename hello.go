@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"math"
 )
 
 //outside of main function, variables must be properly declared
@@ -58,4 +59,21 @@ func main() {
 
 	fmt.Printf("Val: %v Type: %T\n", sb, sb)
 	//prints them as ASCII value array.
+
+	//"" for strings, '' for runes
+
+	r := 'a'
+	fmt.Printf("Val: %v Type: %T\n", r, r)
+
+	//constants
+
+	const pi float32 = 3.14
+
+	fmt.Printf("Val: %v Type: %T\n", pi, pi)
+
+	const actualPi = math.Pi
+
+	fmt.Printf("Val: %v Type: %T\n", actualPi, actualPi)
+
+
 }
