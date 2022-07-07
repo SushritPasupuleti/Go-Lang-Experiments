@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"reflect"
 	"strconv"
 )
 
@@ -115,7 +116,7 @@ func main() {
 
 	fmt.Printf("Val: %v Type: %T Len: %v Capacity: %v \n", slice, slice, len(slice), cap(slice))
 
-	//copies of slices all point to the master slice. This is the same as the pointer to the master slice.
+	//copies of slices all point to the master slice. This is the same as the pointer to the master slice. Same case for maps.
 
 	//maps
 
@@ -130,8 +131,92 @@ func main() {
 
 	fmt.Printf("Val: %v Type: %T\n", map1, map1)
 
-	k, ok := map1["b"]//ok is true if the key is in map.
+	k, ok := map1["b"] //ok is true if the key is in map.
 
 	fmt.Printf("Val: %v Type: %T\n", k, k)
 	fmt.Printf("Val: %v Type: %T\n", ok, ok)
+
+	//structs
+
+	type Person struct {
+		name string
+		age  int
+		id   int
+	}
+
+	p := Person{"John", 42, 1}
+	p2 := Person{
+		name: "Jane",
+		age:  43,
+		id:   2,
+	}
+
+	fmt.Printf("Val: %v Type: %T\n", p, p)
+	fmt.Printf("Val: %v Type: %T\n", p2, p2)
+	fmt.Printf("Val: %v Type: %T\n", p.name, p.name)
+
+	//anonymous structs
+
+	aPerson := struct {
+		name string
+		age  int
+		id   int
+	}{
+		name: "John",
+		age:  42,
+		id:   1,
+	}
+
+	fmt.Printf("Val: %v Type: %T\n", aPerson, aPerson)
+
+	//composition (similar to inheritance)
+
+	type Lifeform struct {
+		name        string
+		age         int
+		carbonBased bool
+	}
+
+	type Bird struct {
+		Lifeform  //embedded struct
+		legs      int
+		beakColor string
+	}
+
+	blueJay := Bird{
+		Lifeform: Lifeform{
+			name:        "Blue Jay",
+			age:         3,
+			carbonBased: true,
+		},
+		legs:      2,
+		beakColor: "blue",
+	}
+
+	fmt.Printf("Val: %v Type: %T\n", blueJay, blueJay)
+
+	//struct tags
+
+	type Person2 struct {
+		name string `required max:"50"` //validation
+		age  int    `min:"18"`
+	}
+
+	p3 := Person2{
+		name: "John",
+		age:  42,
+	}
+
+	t := reflect.TypeOf(p3)
+	v := reflect.ValueOf(p3)
+
+	fmt.Printf("Val: %v Type: %T\n", p3, p3)
+	fmt.Printf("Val: %v Type: %T\n", t, t)
+	fmt.Printf("Val: %v Type: %T\n", v, v)
+
+	if val, ok := map1["b"]; ok {
+		fmt.Printf("Val: %v Type: %T\n", val, val)
+	} else {
+		fmt.Println("Key not found")
+	}
 }
