@@ -219,4 +219,13 @@ func main() {
 	} else {
 		fmt.Println("Key not found")
 	}
+
+	//functions
+	deferredFunc()
+}
+
+func deferredFunc() {
+	fmt.Println("Hello")
+	defer fmt.Println("General Kenobi")//prints right before the function returns.
+	fmt.Println("There")
 }
