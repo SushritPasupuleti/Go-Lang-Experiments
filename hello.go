@@ -232,13 +232,53 @@ func main() {
 	fmt.Printf("Val: %v Type: %T\n", a2, a2)
 	fmt.Printf("Val: %v Type: %T\n", *a2, *a2) //dereference and get value of a1 to which a2 points
 
-	newPerson := new (Person)//creates a pointer to a Person struct.
+	newPerson := new(Person) //creates a pointer to a Person struct.
 
 	fmt.Printf("Val: %v Type: %T\n", newPerson, newPerson)
+
+	multiSum(1, 2, 3, 4, 5)
+
+	divRes, err := divideTwo(10, 2)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+		return
+	}
+	fmt.Printf("Val: %v Type: %T\n", divRes, divRes)
+
+	divErrorRes, err := divideTwo(10, 0)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+		return
+	}
+	fmt.Printf("Val: %v Type: %T\n", divErrorRes, divErrorRes)
 }
 
 func deferredFunc() {
 	fmt.Println("Hello")
-	defer fmt.Println("General Kenobi")//prints right before the function returns.
+	defer fmt.Println("General Kenobi") //prints right before the function returns.
 	fmt.Println("There")
+}
+
+func multiSum(values ...int) int { //accepts any number of ints
+	sum := 0
+	for _, value := range values {
+		sum += value
+	}
+	fmt.Println(sum)
+	return sum
+}
+
+func divideTwo(a, b float32) (float32, error) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in Division function", r)
+		}
+	}()
+
+	if b == 0.0 {
+		panic("Attempting division by zero")
+	}
+
+	return a / b, nil
 }
