@@ -222,6 +222,19 @@ func main() {
 
 	//functions
 	deferredFunc()
+
+	//pointers
+
+	var a1 int = 42
+	var a2 *int = &a1
+
+	fmt.Printf("Val: %v Type: %T\n", a1, a1)
+	fmt.Printf("Val: %v Type: %T\n", a2, a2)
+	fmt.Printf("Val: %v Type: %T\n", *a2, *a2) //dereference and get value of a1 to which a2 points
+
+	newPerson := new (Person)//creates a pointer to a Person struct.
+
+	fmt.Printf("Val: %v Type: %T\n", newPerson, newPerson)
 }
 
 func deferredFunc() {
